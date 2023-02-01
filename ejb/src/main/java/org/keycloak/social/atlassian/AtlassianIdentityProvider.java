@@ -67,7 +67,7 @@ public class AtlassianIdentityProvider extends AbstractOAuth2IdentityProvider<At
 
     @Override
     protected BrokeredIdentityContext extractIdentityFromProfile(EventBuilder event, JsonNode profile) {
-        BrokeredIdentityContext user = new BrokeredIdentityContext(getJsonProperty(profile, "id"));
+        BrokeredIdentityContext user = new BrokeredIdentityContext(getJsonProperty(profile, "account_id"));
 
         user.setUsername(getJsonProperty(profile, "account_id"));
         user.setEmail(getJsonProperty(profile, "email"));
