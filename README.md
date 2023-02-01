@@ -1,33 +1,31 @@
-# keycloak-discord
+# keycloak-atlassian
 
-Keycloak Social Login extension for Discord.
+Keycloak Social Login extension for Atlassian.
 
 
 ## Install
 
-Download `keycloak-discord-ear-<version>.ear` from [Releases page](https://github.com/wadahiro/keycloak-discord/releases).
+Download `keycloak-atlassian-ear-<version>.ear` from [Releases page](https://github.com/iglimanaj/keycloak-atlassian/releases).
 Then deploy it into `$KEYCLOAK_HOME/standalone/deployments/` directory.
 
 ## Setup
 
-### Discord
+### Atlassian
 
-Access to [Discord Developer Portal](https://discord.com/developers/applications) and create your application.
+Access to [Atlassian Developer Portal](https://developer.atlassian.com/console/myapps) and create your application.
 You can get Client ID and Client Secret from the created application.
 
 ### Keycloak
 
-Note: You don't need to setup the theme in `master` realm from v0.3.0.
 
-1. Add `discord` Identity Provider in the realm which you want to configure.
-2. In the `discord` identity provider page, set `Client Id` and `Client Secret`.
-3. (Optional) Set Guild Id(s) to allow federation if you want.
+1. Add `atlassian` Identity Provider in the realm which you want to configure.
+2. In the `atlassian` identity provider page, set `Client Id` and `Client Secret`.
 
 
 ## Source Build
 
 Clone this repository and run `mvn package`.
-You can see `keycloak-discord-ear-<version>.ear` under `ear/target` directory.
+You can see `keycloak-atlassian-ear-<version>.ear` under `ear/target` directory.
 
 
 ## Licence
@@ -37,5 +35,5 @@ You can see `keycloak-discord-ear-<version>.ear` under `ear/target` directory.
 
 ## Author
 
-- [Hiroyuki Wada](https://github.com/wadahiro)
+- [Igli Manaj](https://github.com/iglimanaj)
 

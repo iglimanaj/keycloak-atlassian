@@ -24,7 +24,7 @@ import org.keycloak.models.IdentityProviderModel;
 import org.keycloak.models.KeycloakSession;
 
 /**
- * @author <a href="mailto:wadahiro@gmail.com">Hiroyuki Wada</a>
+ * @author <a href="mailto:manajigli@gmail.com">Igli Manaj</a>
  */
 public class AtlassianIdentityProviderFactory extends AbstractIdentityProviderFactory<AtlassianIdentityProvider>
         implements SocialIdentityProviderFactory<AtlassianIdentityProvider> {

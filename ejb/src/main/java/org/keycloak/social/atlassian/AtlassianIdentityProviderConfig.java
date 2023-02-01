@@ -26,7 +26,7 @@ import org.keycloak.broker.oidc.OAuth2IdentityProviderConfig;
 import org.keycloak.models.IdentityProviderModel;
 
 /**
- * @author <a href="mailto:wadahiro@gmail.com">Hiroyuki Wada</a>
+ * @author <a href="mailto:manajigli@gmail.com">Igli Manaj</a>
  */
 public class AtlassianIdentityProviderConfig extends OAuth2IdentityProviderConfig {
 

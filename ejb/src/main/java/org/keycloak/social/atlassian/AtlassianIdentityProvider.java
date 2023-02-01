@@ -34,7 +34,7 @@ import javax.ws.rs.core.Response;
 import java.util.Set;
 
 /**
- * @author <a href="mailto:wadahiro@gmail.com">Hiroyuki Wada</a>
+ * @author <a href="mailto:manajigli@gmail.com">Igli Manaj</a>
  */
 public class AtlassianIdentityProvider extends AbstractOAuth2IdentityProvider<AtlassianIdentityProviderConfig>
         implements SocialIdentityProvider<AtlassianIdentityProviderConfig> {
