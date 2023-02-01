@@ -2,15 +2,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>org.keycloak.extensions</groupId>
-        <artifactId>keycloak-discord-parent</artifactId>
+        <artifactId>keycloak-atlassian-parent</artifactId>
         <version>0.3.1</version>
     </parent>
 
-    <name>Keycloak Discord EJB</name>
+    <name>Keycloak Atlassian EJB</name>
     <description/>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>keycloak-discord-ejb</artifactId>
+    <artifactId>keycloak-atlassian-ejb</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

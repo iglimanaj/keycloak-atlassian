@@ -45,14 +45,14 @@ public class AtlassianIdentityProvider extends AbstractOAuth2IdentityProvider<At
     public static final String TOKEN_URL = "https://auth.atlassian.com/oauth/token";
     public static final String PROFILE_URL = "https://api.atlassian.com/me";
     public static final String DEFAULT_SCOPE = "read:me";
-    public static final String DEFAULT_FORWARD_PARAMETER = "audience=api.atlassian.com"
+    public static final String DEFAULT_FORWARD_PARAMETER = "audience=api.atlassian.com";
 
     public AtlassianIdentityProvider(KeycloakSession session, AtlassianIdentityProviderConfig config) {
         super(session, config);
         config.setAuthorizationUrl(AUTH_URL);
         config.setTokenUrl(TOKEN_URL);
         config.setUserInfoUrl(PROFILE_URL);
-        config.setForwardParameters(DEFAULT_FORWARD_PARAMETER)
+        config.setForwardParameters(DEFAULT_FORWARD_PARAMETER);
     }
 
     @Override
