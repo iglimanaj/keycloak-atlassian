@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.keycloak.social.discord;
+package org.keycloak.social.atlassian;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,37 +28,24 @@ import org.keycloak.models.IdentityProviderModel;
 /**
  * @author <a href="mailto:wadahiro@gmail.com">Hiroyuki Wada</a>
  */
-public class DiscordIdentityProviderConfig extends OAuth2IdentityProviderConfig {
+public class AtlassianIdentityProviderConfig extends OAuth2IdentityProviderConfig {
 
-    public DiscordIdentityProviderConfig(IdentityProviderModel model) {
+    public AtlassianIdentityProviderConfig(IdentityProviderModel model) {
         super(model);
     }
 
-    public DiscordIdentityProviderConfig() {
-    }
-
-    public String getAllowedGuilds() {
-        return getConfig().get("allowedGuilds");
-    }
-
-    public void setAllowedGuilds(String allowedGuilds) {
-        getConfig().put("allowedGuilds", allowedGuilds);
-    }
-
-    public boolean hasAllowedGuilds() {
-        String guilds = getConfig().get("allowedGuilds");
-        return guilds != null && !guilds.trim().isEmpty();
-    }
-
-    public Set<String> getAllowedGuildsAsSet() {
-        if (hasAllowedGuilds()) {
-            String guilds = getConfig().get("allowedGuilds");
-            return Arrays.stream(guilds.split(",")).map(x -> x.trim()).collect(Collectors.toSet());
-        }
-        return Collections.emptySet();
+    public AtlassianIdentityProviderConfig() {
     }
 
     public void setPrompt(String prompt) {
         getConfig().put("prompt", prompt);
+    }
+
+    public String getForwardParameters() {
+        return getConfig().get("forwardParameters");
+    }
+
+    public void setForwardParameters(String forwardParameters) {
+       getConfig().put("forwardParameters", forwardParameters);
     }
 }

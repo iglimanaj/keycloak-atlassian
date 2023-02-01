@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-package org.keycloak.social.discord;
+package org.keycloak.social.atlassian;
 
 import org.keycloak.broker.oidc.mappers.AbstractJsonUserAttributeMapper;
 
 /**
  * User attribute mapper.
  * 
- * @author dannyAAM
+ * @author iglimanaj
  */
-public class DiscordUserAttributeMapper extends AbstractJsonUserAttributeMapper {
+public class AtlassianUserAttributeMapper extends AbstractJsonUserAttributeMapper {
 
-	private static final String[] cp = new String[] { DiscordIdentityProviderFactory.PROVIDER_ID };
+	private static final String[] cp = new String[] { AtlassianIdentityProviderFactory.PROVIDER_ID };
 
 	@Override
 	public String[] getCompatibleProviders() {
@@ -35,7 +35,7 @@ public class DiscordUserAttributeMapper extends AbstractJsonUserAttributeMapper 
 
 	@Override
 	public String getId() {
-		return "discord-user-attribute-mapper";
+		return "atlassian-user-attribute-mapper";
 	}
 
 }

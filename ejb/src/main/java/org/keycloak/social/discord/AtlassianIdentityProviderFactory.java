@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.keycloak.social.discord;
+package org.keycloak.social.atlassian;
 
 import org.keycloak.broker.oidc.OAuth2IdentityProviderConfig;
 import org.keycloak.broker.provider.AbstractIdentityProviderFactory;
@@ -26,24 +26,24 @@ import org.keycloak.models.KeycloakSession;
 /**
  * @author <a href="mailto:wadahiro@gmail.com">Hiroyuki Wada</a>
  */
-public class DiscordIdentityProviderFactory extends AbstractIdentityProviderFactory<DiscordIdentityProvider>
-        implements SocialIdentityProviderFactory<DiscordIdentityProvider> {
+public class AtlassianIdentityProviderFactory extends AbstractIdentityProviderFactory<AtlassianIdentityProvider>
+        implements SocialIdentityProviderFactory<AtlassianIdentityProvider> {
 
-    public static final String PROVIDER_ID = "discord";
+    public static final String PROVIDER_ID = "atlassian";
 
     @Override
     public String getName() {
-        return "Discord";
+        return "Atlassian";
     }
 
     @Override
-    public DiscordIdentityProvider create(KeycloakSession session, IdentityProviderModel model) {
-        return new DiscordIdentityProvider(session, new DiscordIdentityProviderConfig(model));
+    public AtlassianIdentityProvider create(KeycloakSession session, IdentityProviderModel model) {
+        return new AtlassianIdentityProvider(session, new AtlassianIdentityProviderConfig(model));
     }
 
     @Override
-    public DiscordIdentityProviderConfig createConfig() {
-        return new DiscordIdentityProviderConfig();
+    public AtlassianIdentityProviderConfig createConfig() {
+        return new AtlassianIdentityProviderConfig();
     }
 
     @Override

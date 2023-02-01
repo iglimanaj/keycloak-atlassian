@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.keycloak.social.discord;
+package org.keycloak.social.atlassian;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.jboss.logging.Logger;
@@ -36,23 +36,23 @@ import java.util.Set;
 /**
  * @author <a href="mailto:wadahiro@gmail.com">Hiroyuki Wada</a>
  */
-public class DiscordIdentityProvider extends AbstractOAuth2IdentityProvider<DiscordIdentityProviderConfig>
-        implements SocialIdentityProvider<DiscordIdentityProviderConfig> {
+public class AtlassianIdentityProvider extends AbstractOAuth2IdentityProvider<AtlassianIdentityProviderConfig>
+        implements SocialIdentityProvider<AtlassianIdentityProviderConfig> {
 
-    private static final Logger log = Logger.getLogger(DiscordIdentityProvider.class);
+    private static final Logger log = Logger.getLogger(AtlassianIdentityProvider.class);
 
-    public static final String AUTH_URL = "https://discord.com/api/oauth2/authorize";
-    public static final String TOKEN_URL = "https://discord.com/api/oauth2/token";
-    public static final String PROFILE_URL = "https://discord.com/api/users/@me";
-    public static final String GROUP_URL = "https://discord.com/api/users/@me/guilds";
-    public static final String DEFAULT_SCOPE = "identify email";
-    public static final String GUILDS_SCOPE = "guilds";
+    public static final String AUTH_URL = "https://auth.atlassian.com/authorize";
+    public static final String TOKEN_URL = "https://auth.atlassian.com/oauth/token";
+    public static final String PROFILE_URL = "https://api.atlassian.com/me";
+    public static final String DEFAULT_SCOPE = "read:me";
+    public static final String DEFAULT_FORWARD_PARAMETER = "audience=api.atlassian.com"
 
-    public DiscordIdentityProvider(KeycloakSession session, DiscordIdentityProviderConfig config) {
+    public AtlassianIdentityProvider(KeycloakSession session, AtlassianIdentityProviderConfig config) {
         super(session, config);
         config.setAuthorizationUrl(AUTH_URL);
         config.setTokenUrl(TOKEN_URL);
         config.setUserInfoUrl(PROFILE_URL);
+        config.setForwardParameters(DEFAULT_FORWARD_PARAMETER)
     }
 
     @Override
@@ -69,7 +69,7 @@ public class DiscordIdentityProvider extends AbstractOAuth2IdentityProvider<Disc
     protected BrokeredIdentityContext extractIdentityFromProfile(EventBuilder event, JsonNode profile) {
         BrokeredIdentityContext user = new BrokeredIdentityContext(getJsonProperty(profile, "id"));
 
-        user.setUsername(getJsonProperty(profile, "username") + "#" + getJsonProperty(profile, "discriminator"));
+        user.setUsername(getJsonProperty(profile, "account_id"));
         user.setEmail(getJsonProperty(profile, "email"));
         user.setIdpConfig(getConfig());
         user.setIdp(this);
@@ -86,39 +86,14 @@ public class DiscordIdentityProvider extends AbstractOAuth2IdentityProvider<Disc
         try {
             profile = SimpleHttp.doGet(PROFILE_URL, session).header("Authorization", "Bearer " + accessToken).asJson();
         } catch (Exception e) {
-            throw new IdentityBrokerException("Could not obtain user profile from discord.", e);
-        }
-
-        if (getConfig().hasAllowedGuilds()) {
-            if (!isAllowedGuild(accessToken)) {
-                throw new ErrorPageException(session, Response.Status.FORBIDDEN, Messages.INVALID_REQUESTER);
-            }
+            throw new IdentityBrokerException("Could not obtain user profile from atlassian.", e);
         }
         return extractIdentityFromProfile(null, profile);
     }
 
-    protected boolean isAllowedGuild(String accessToken) {
-        try {
-            JsonNode guilds = SimpleHttp.doGet(GROUP_URL, session).header("Authorization", "Bearer " + accessToken).asJson();
-            Set<String> allowedGuilds = getConfig().getAllowedGuildsAsSet();
-            for (JsonNode guild : guilds) {
-                String guildId = getJsonProperty(guild, "id");
-                if (allowedGuilds.contains(guildId)) {
-                    return true;
-                }
-            }
-            return false;
-        } catch (Exception e) {
-            throw new IdentityBrokerException("Could not obtain guilds the current user is a member of from discord.", e);
-        }
-    }
 
     @Override
     protected String getDefaultScopes() {
-        if (getConfig().hasAllowedGuilds()) {
-            return DEFAULT_SCOPE + " " + GUILDS_SCOPE;
-        } else {
-            return DEFAULT_SCOPE;
-        }
+        return DEFAULT_SCOPE;
     }
 }
