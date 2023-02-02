@@ -15,6 +15,10 @@ Then deploy it into `$KEYCLOAK_HOME/standalone/deployments/` directory.
 Access to [Atlassian Developer Portal](https://developer.atlassian.com/console/myapps) and create your application.
 You can get Client ID and Client Secret from the created application.
 
+#### Technical details about the endpoints
+
+In this article [OAuth 2.0 (3LO) apps](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps) you can find information about the OAuth2.0 relevant endpoints that are provided by Atlassian.
+
 ### Keycloak
 
 
@@ -35,5 +39,9 @@ You can see `keycloak-atlassian-ear-<version>.ear` under `ear/target` directory.
 
 ## Author
 
-- [Igli Manaj](https://github.com/iglimanaj)
+- [Igli Manaj](https://github.com/iglimanaj) for amberSearch. Find more infos about amberSearch here https://ambersearch.de
 
+
+## Credits
+
+This project was initially based on https://github.com/wadahiro/keycloak-discord, which is maintained by [Hiroyuki Wada](https://github.com/wadahiro)
